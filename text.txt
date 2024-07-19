@@ -1,0 +1,13 @@
+#!/bin/bash   -> create a shell script(to convert python file to script, node file to script)
+exec > >(tee /var/log/user-data.log|logger -t user-data -s 2>/dev/console) 2>&1  -> this will take all logs from terminal and store in user-data.log file so that we can debug, so the complete is for log purpose
+cd /home/ubuntu/
+sudo apt update -y  -> to update new ubuntu machine
+sudo apt install nodejs -y  -> to run nodejs server
+sudo apt install npm -y  -> to install npm package manager
+mkdir -p /home/ubuntu/.ssh  -> directory to setup things for git, to download repo from git, so the below 2 are the dedicate steps that we need to do, nothing logical here
+ssh-keyscan -t rsa github.com > /home/ubuntu/.ssh/known_hosts
+git clone https://github.com/jash459/API-Gateway.git  -> clone mircoservice
+cd API_Gateway  
+sudo npm install  
+# start the app
+sudo npx pm2 start index.js 

@@ -4,10 +4,11 @@ cd /home/ubuntu/
 sudo apt update -y
 sudo apt install nodejs -y
 sudo apt install npm -y
+sudo npm install pm2 -g
 mkdir -p /home/ubuntu/.ssh
 ssh-keyscan -t rsa github.com > /home/ubuntu/.ssh/known_hosts
 git clone https://github.com/jash459/API-Gateway.git
 cd API_Gateway
 sudo npm install
 # start the app
-sudo npx pm2 start index.js 
+sudo pm2 start /home/ubuntu/API-Gateway/index.js
